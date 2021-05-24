@@ -6,12 +6,10 @@ const axios = require("axios");
 exports.handler = (event, context, callback) => {
   const URL = `https://api.github.com/graphql`;
   const accessToken = process.env.GITHUB_API_KEY;
-  console.log(URL);
-  console.log(accessToken);
   const query = 
   `query {
     repository(owner:"Shopify", name:"shopify-app-cli") {
-      issues(last:20) {
+      issues(last:20, states:OPEN) {
         edges {
           node {
             title
