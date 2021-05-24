@@ -1,5 +1,10 @@
 const dns = require('dns');
 
-dns.lookup('verisign.com', (err, address, family) => {
-  console.log('address: %j family: IPv%s', address, family);
-});
+exports.handler = function (event, context, callback) {
+  dns.resolve(event.queryStringParameters.hostname, 'ANY', (err, records) => {
+    callback(err, {
+      statusCode: 200,
+      body: JSON.stringify(records),
+    });
+  });
+};
