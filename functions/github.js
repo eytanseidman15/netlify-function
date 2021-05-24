@@ -8,13 +8,20 @@ exports.handler = (event, context, callback) => {
   const accessToken = process.env.GITHUB_API_KEY;
   const query = 
   `query {
-    repositoryOwner(login:"stripe-samples"){
-      pinnedRepositories(first:4) {
-        nodes {
-          name
-          url
-          homepageUrl
-          description
+    repository(owner:"Shopify", name:"shopify-app-cli") {
+      issues(last:20) {
+        edges {
+          node {
+            title
+            url
+            labels(first:5) {
+              edges {
+                node {
+                  name
+                }
+              }
+            }
+          }
         }
       }
     }
