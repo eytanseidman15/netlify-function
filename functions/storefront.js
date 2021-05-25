@@ -34,7 +34,8 @@ exports.handler = (event, context, callback) => {
       url: URL,
       data: JSON.stringify({ query }),
       headers: {
-        'X-Shopify-Storefront-Access-Token': `${accessToken}`
+        'X-Shopify-Storefront-Access-Token': `${accessToken}`,
+        'Content-Type': 'application/json'
       }
     })
       .then(res => send(res.data.shop.name))
