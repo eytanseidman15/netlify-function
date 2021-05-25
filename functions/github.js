@@ -6,6 +6,12 @@ const axios = require("axios");
 exports.handler = (event, context, callback) => {
   const URL = `https://api.github.com/graphql`;
   const accessToken = process.env.GITHUB_API_KEY;
+
+  const callbackHeaders = {
+    "Access-Control-Allow-Origin" : "*",
+    "Access-Control-Allow-Headers": "Content-Type"
+  };
+
   const query = 
   `query {
     repository(owner:"Shopify", name:"shopify-app-cli") {
@@ -31,6 +37,7 @@ exports.handler = (event, context, callback) => {
   const send = body => {
     callback(null, {
       statusCode: 200,
+      hedaers: callbackHeaders,
       body: JSON.stringify(body)
     });
   };
