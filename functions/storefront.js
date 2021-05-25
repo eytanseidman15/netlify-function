@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 // serverless letlify lambda function, 
-// intermediate between client and github apiv4
+// intermediate between client and Shooify
 
 exports.handler = (event, context, callback) => {
   const URL = `https://livingston-baked-goods.myshopify.com/api/2021-04/graphql.json`;
@@ -19,14 +19,6 @@ exports.handler = (event, context, callback) => {
     }
   }`;
 
-  // Send json response to the react client app
-  const send = body => {
-    callback(null, {
-      statusCode: 200,
-      body: JSON.stringify(body)
-    });
-  };
-
   // Perform API call
   const getshopdata = () => {
     axios({
@@ -38,13 +30,20 @@ exports.handler = (event, context, callback) => {
         'Content-Type': 'application/json'
       }
     })
-      .then(res => send(res.data.shop.name))
-      .catch(err => send(err));
-  };
+    .then((res) => {
+      callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(body)
+      });
+    })
+    .catch((err) => {
+      callback(err);
+    });
+  }
 
   // Make sure method is GET
   if (event.httpMethod == "GET") {
     // Run
     getshopdata();
-  }
-};
+    }
+  };
