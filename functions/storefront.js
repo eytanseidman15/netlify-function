@@ -33,7 +33,7 @@ exports.handler = (event, context, callback) => {
     .then((res) => {
       callback(null, {
         statusCode: 200,
-        body: stringify(res)
+        body: JSON.stringify(res)
       });
     })
     .catch((err) => {
