@@ -7,8 +7,7 @@ exports.handler = (event, context, callback) => {
   const URL = `https://livingston-baked-goods.myshopify.com/api/2021-04/graphql.json`;
   const accessToken = process.env.SHOPIFY_API_KEY;
   const query = 
-  `query {
-    {
+  `{
       shop {
         name
         primaryDomain {
@@ -16,8 +15,7 @@ exports.handler = (event, context, callback) => {
           host
         }
       }
-    }
-  }`;
+    }`;
 
   // Perform API call
   const getshopdata = () => {
