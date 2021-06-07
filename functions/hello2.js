@@ -3,7 +3,7 @@ exports.handler = async event => {
     var start = new Date()
 
     let itemPrices = ['22.88', '98.7', '108.2', '4.5','1245.4']
-    fruits.itemPrices(function(item, index, array) {
+    itemsPrices.forEach(function(item, index, array) {
         console.log(item, index)
       })
 
