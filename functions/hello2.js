@@ -14,6 +14,6 @@ exports.handler = async event => {
 
     return {
         statusCode: 200,
-        body: `Hello ${itemPrices}`
+        body: `Hello runtime: ${end} data: ${itemPrices}`
     }
 }
